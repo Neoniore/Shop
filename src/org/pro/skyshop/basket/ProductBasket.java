@@ -49,6 +49,29 @@ public class ProductBasket {
         System.out.printf("\nИтого: %d", obtainingTheCostOfTheBasket());
     }
 
+    //проверка наличия товара в корзине по имени
+    public boolean checkingByTheNameOfTheProductInTheBasket(String productName) {
+        if (isBasketEmpty(products)) {
+            throw new IllegalStateException("В корзине пусто");
+        }
+        boolean containsAProduct = false;
+        for (Product product : products) {
+            if (product.getName().equalsIgnoreCase(productName)) {
+                containsAProduct = true;
+                break;
+            }
+        }
+        return containsAProduct;
+    }
+
+    //очистка корзины
+    public void cleaningTheBasket() {
+        if (isBasketEmpty(products)) {
+            throw new IllegalStateException("Корзина уже пустая");
+        }
+        products = new Product[capacityOfTheBasket];
+    }
+
 
     private boolean isBasketFull(Product[] products) {
         return products != null && products[capacityOfTheBasket - 1] != null;
