@@ -19,9 +19,10 @@ public class ProductBasket {
         if (isBasketFull(products)) {
             throw new IllegalStateException("Невозможно добавить продукт");
         }
-        for (int i = 0; i < products.length - 1; i++) {
+        for (int i = 0; i < products.length; i++) {
             if (products[i] == null) {
                 products[i] = product;
+                break;
             }
         }
     }
@@ -33,7 +34,7 @@ public class ProductBasket {
         }
         int theCostOfTheBasket = 0;
         for (Product product : products) {
-            theCostOfTheBasket = +product.getPrice();
+            theCostOfTheBasket += product.getPrice();
         }
         return theCostOfTheBasket;
     }
@@ -43,10 +44,11 @@ public class ProductBasket {
         if (isBasketEmpty(products)) {
             throw new IllegalStateException("В корзине пусто");
         }
+        System.out.println("----------\nКорзина\n----------");
         for (Product product : products) {
             System.out.printf("%s: %d\n", product.getName(), product.getPrice());
         }
-        System.out.printf("\nИтого: %d", obtainingTheCostOfTheBasket());
+        System.out.printf("----------\nИтого: %d\n\n", obtainingTheCostOfTheBasket());
     }
 
     //проверка наличия товара в корзине по имени
