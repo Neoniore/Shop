@@ -33,12 +33,21 @@ public class ProductBasket {
         }
         int theCostOfTheBasket = 0;
         for (Product product : products) {
-            theCostOfTheBasket =+ product.getPrice();
+            theCostOfTheBasket = +product.getPrice();
         }
         return theCostOfTheBasket;
     }
 
     // печать содержимого корзины
+    public void displayTheContentsOfTheBasket() {
+        if (isBasketEmpty(products)) {
+            throw new IllegalStateException("В корзине пусто");
+        }
+        for (Product product : products) {
+            System.out.printf("%s: %d\n", product.getName(), product.getPrice());
+        }
+        System.out.printf("\nИтого: %d", obtainingTheCostOfTheBasket());
+    }
 
 
     private boolean isBasketFull(Product[] products) {
