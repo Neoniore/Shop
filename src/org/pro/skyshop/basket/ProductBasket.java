@@ -2,15 +2,15 @@ package org.pro.skyshop.basket;
 
 import org.pro.skyshop.product.Product;
 
-import java.util.Arrays;
-
 public class ProductBasket {
-    private static long id;
+    private static long counter;
+    private final long id;
     private static final int capacityOfTheBasket = 5; // объем корзины
     private Product[] products;
 
     public ProductBasket() {
-        id++;
+        counter++;
+        id = counter;
         products = new Product[capacityOfTheBasket];
     }
 
@@ -56,14 +56,12 @@ public class ProductBasket {
         if (isBasketEmpty(products)) {
             throw new IllegalStateException("В корзине пусто");
         }
-        boolean containsAProduct = false;
         for (Product product : products) {
             if (product.getName().equalsIgnoreCase(productName)) {
-                containsAProduct = true;
-                break;
+                return true;
             }
         }
-        return containsAProduct;
+        return false;
     }
 
     //очистка корзины
@@ -76,17 +74,20 @@ public class ProductBasket {
 
 
     private boolean isBasketFull(Product[] products) {
-        return products != null && products[capacityOfTheBasket - 1] != null;
+        for (Product product : products) {
+            if (product == null) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean isBasketEmpty(Product[] products) {
-        boolean isEmpty = true;
         for (Product product : products) {
             if (product != null) {
-                isEmpty = false;
-                break;
+                return false;
             }
         }
-        return isEmpty;
+        return true;
     }
 }
