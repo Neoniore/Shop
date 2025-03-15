@@ -3,14 +3,10 @@ package org.pro.skyshop.basket;
 import org.pro.skyshop.product.Product;
 
 public class ProductBasket {
-    private static long counter;
-    private final long id;
     private static final int capacityOfTheBasket = 5; // объем корзины
     private Product[] products;
 
     public ProductBasket() {
-        counter++;
-        id = counter;
         products = new Product[capacityOfTheBasket];
     }
 
