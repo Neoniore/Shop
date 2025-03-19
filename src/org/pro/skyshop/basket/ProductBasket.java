@@ -51,7 +51,7 @@ public class ProductBasket {
             }
         }
         System.out.printf("----------\nИтого: %d\n", obtainingTheCostOfTheBasket());
-        System.out.printf("\nСпециальных товаров: %d\n----------\n", specialProductsCount);
+        System.out.printf("Специальных товаров: %d\n----------\n", specialProductsCount);
     }
 
     //проверка наличия товара в корзине по имени
