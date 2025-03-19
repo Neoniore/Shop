@@ -12,4 +12,13 @@ public class FixPriceProduct extends Product {
         return FIX_PRICE;
     }
 
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s: %d (фиксированная цена %d)", super.getName(), getPrice(), FIX_PRICE);
+    }
 }

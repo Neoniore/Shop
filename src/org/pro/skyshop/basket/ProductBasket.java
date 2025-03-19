@@ -3,11 +3,11 @@ package org.pro.skyshop.basket;
 import org.pro.skyshop.product.Product;
 
 public class ProductBasket {
-    private static final int capacityOfTheBasket = 5; // объем корзины
+    private static final int CAPACITY_OF_BASKET = 5;
     private Product[] products;
 
     public ProductBasket() {
-        products = new Product[capacityOfTheBasket];
+        products = new Product[CAPACITY_OF_BASKET];
     }
 
     // добавление товара в корзину
@@ -41,10 +41,17 @@ public class ProductBasket {
             throw new IllegalStateException("В корзине пусто");
         }
         System.out.println("----------\nКорзина\n----------");
+
+        int specialProductsCount = 0;
+
         for (Product product : products) {
-            System.out.printf("%s: %d\n", product.getName(), product.getPrice());
+            System.out.println(product);
+            if (product.isSpecial()) {
+                specialProductsCount++;
+            }
         }
-        System.out.printf("----------\nИтого: %d\n\n", obtainingTheCostOfTheBasket());
+        System.out.printf("----------\nИтого: %d\n", obtainingTheCostOfTheBasket());
+        System.out.printf("\nСпециальных товаров: %d\n----------\n", specialProductsCount);
     }
 
     //проверка наличия товара в корзине по имени
@@ -65,7 +72,7 @@ public class ProductBasket {
         if (isBasketEmpty(products)) {
             throw new IllegalStateException("Корзина уже пустая");
         }
-        products = new Product[capacityOfTheBasket];
+        products = new Product[CAPACITY_OF_BASKET];
     }
 
 

@@ -12,6 +12,16 @@ public class DiscountedProduct extends Product {
 
     @Override
     public int getPrice() {
-        return basicPrice * precentageDiscount / 100;
+        return basicPrice - basicPrice * precentageDiscount / 100;
+    }
+
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s: %d (скидка %d%%)", super.getName(), getPrice(), precentageDiscount);
     }
 }
