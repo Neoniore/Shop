@@ -1,6 +1,6 @@
 package org.pro.skyshop.product;
 
-import org.pro.skyshop.content.Searchable;
+import org.pro.skyshop.search.Searchable;
 
 public abstract class Product implements Searchable {
     private final String name;
@@ -26,7 +26,6 @@ public abstract class Product implements Searchable {
         return "PRODUCT";
     }
 
-    //не понимаю смысла этого метода, может быть не так понял задание и его вообще не должно быть
     @Override
     public String getObjectName() {
         return getName();

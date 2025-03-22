@@ -1,12 +1,18 @@
 package org.pro.skyshop.content;
 
-public class Article implements Searchable{
+import org.pro.skyshop.search.Searchable;
+
+public class Article implements Searchable {
     private final String name;
     private final String text;
 
     public Article(String name, String text) {
         this.name = name;
         this.text = text;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -24,9 +30,8 @@ public class Article implements Searchable{
         return "ARTICLE";
     }
 
-    //не понимаю смысла этого метода, может быть не так понял задание и его вообще не должно быть
     @Override
     public String getObjectName() {
-        return name;
+        return getName();
     }
 }
