@@ -3,7 +3,7 @@ package org.pro.skyshop.search;
 public class SearchEngine {
     Searchable[] searchables;
 
-    SearchEngine(int searchLimit) {
+    public SearchEngine(int searchLimit) {
         searchables = new Searchable[searchLimit];
     }
 
