@@ -4,7 +4,7 @@ public interface Searchable {
     String getSearchTerm();
     String getContentType();
     String getObjectName();
-    default String StringRepresentation() {
+    default String getStringRepresentation() {
         return String.format("%s - %s", getObjectName(), getContentType());
     }
 }
