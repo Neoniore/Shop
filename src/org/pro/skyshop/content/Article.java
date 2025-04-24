@@ -3,21 +3,21 @@ package org.pro.skyshop.content;
 import org.pro.skyshop.search.Searchable;
 
 public class Article implements Searchable {
-    private final String name;
+    private final String title;
     private final String text;
 
-    public Article(String name, String text) {
-        this.name = name;
+    public Article(String title, String text) {
+        this.title = title;
         this.text = text;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     @Override
     public String toString() {
-        return String.format("%s\n%s\n", name, text);
+        return String.format("%s\n%s\n", title, text);
     }
 
     @Override
@@ -32,6 +32,6 @@ public class Article implements Searchable {
 
     @Override
     public String getObjectName() {
-        return getName();
+        return getTitle();
     }
 }
