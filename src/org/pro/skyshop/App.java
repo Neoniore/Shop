@@ -1,6 +1,7 @@
 package org.pro.skyshop;
 
 import org.pro.skyshop.content.Article;
+import org.pro.skyshop.exception.BestResultNotFound;
 import org.pro.skyshop.product.DiscountedProduct;
 import org.pro.skyshop.product.FixPriceProduct;
 import org.pro.skyshop.product.SimpleProduct;
@@ -24,6 +25,14 @@ public class App {
         System.out.println(Arrays.toString(se.search("мясо")));
 
 
+        try {
+            System.out.println("\nse.findSearchable() = " + se.findSearchable("молоко"));
+            System.out.println("\nse.findSearchable() = " + se.findSearchable("ffff"));
+        } catch (BestResultNotFound e) {
+            throw new RuntimeException(e);
+        }
+
+
         //System.out.println("theCostOfTheBasket = " + pb.obtainingTheCostOfTheBasket());
         //System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"молоко\") = " + pb.checkingByTheNameOfTheProductInTheBasket("молоко"));
         //System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"краска\") = " + pb.checkingByTheNameOfTheProductInTheBasket("краска"));
@@ -41,6 +50,7 @@ public class App {
         SimpleProduct bread = new SimpleProduct("Хлеб", 50);
         SimpleProduct butter = new SimpleProduct("Масло", 120);
         DiscountedProduct chocolate = new DiscountedProduct("Шоколад", 100, 15);
+
         Article milkArticle = new Article("Молоко: польза для здоровья и как избежать подделок", "Как отличить натуральное молоко от подделки и почему оно важно для вашего рациона.");
         Article meatArticle = new Article("Мясо: как выбрать качественный продукт и сохранить его свежесть", "Советы по выбору свежего мяса и правильному хранению для сохранения вкуса и пользы.");
 

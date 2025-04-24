@@ -1,5 +1,7 @@
 package org.pro.skyshop.search;
 
+import org.pro.skyshop.exception.BestResultNotFound;
+
 public class SearchEngine {
     Searchable[] searchables;
 
@@ -43,11 +45,15 @@ public class SearchEngine {
                     count++;
                     if (count > numberOfOccurrences) {
                         foundObject = searchable;
+                        numberOfOccurrences = count;
                     }
                     index += search.length();
                 }
 
             }
+        }
+        if (foundObject == null) {
+            throw new BestResultNotFound(String.format("Failed to find the word \"%s\" ", search));
         }
         return foundObject;
     }
