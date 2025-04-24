@@ -38,7 +38,7 @@ public class App {
         SimpleProduct milk = new SimpleProduct("Молоко", 100);
         SimpleProduct cheese = new SimpleProduct("Сыр", 150);
         SimpleProduct water = new SimpleProduct("Вода", 80);
-        SimpleProduct bread = new SimpleProduct("Хлеб", 0);
+        SimpleProduct bread = new SimpleProduct("Хлеб", 50);
         SimpleProduct butter = new SimpleProduct("Масло", 120);
         DiscountedProduct chocolate = new DiscountedProduct("Шоколад", 100, 15);
         Article milkArticle = new Article("Молоко: польза для здоровья и как избежать подделок", "Как отличить натуральное молоко от подделки и почему оно важно для вашего рациона.");
