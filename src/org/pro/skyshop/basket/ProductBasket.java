@@ -2,25 +2,18 @@ package org.pro.skyshop.basket;
 
 import org.pro.skyshop.product.Product;
 
+import java.util.ArrayList;
+
 public class ProductBasket {
-    private static final int CAPACITY_OF_BASKET = 5;
-    private Product[] products;
+    private ArrayList<Product> products;
 
     public ProductBasket() {
-        products = new Product[CAPACITY_OF_BASKET];
+        products = new ArrayList<>();
     }
 
     // добавление товара в корзину
     public void addingGoods(Product product) {
-        if (isBasketFull(products)) {
-            throw new IllegalStateException("Невозможно добавить продукт");
-        }
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null) {
-                products[i] = product;
-                break;
-            }
-        }
+        products.add(product);
     }
 
     // получение стоимости всей корзины
@@ -72,7 +65,7 @@ public class ProductBasket {
         if (isBasketEmpty(products)) {
             throw new IllegalStateException("Корзина уже пустая");
         }
-        products = new Product[CAPACITY_OF_BASKET];
+        products.clear();
     }
 
 
@@ -85,7 +78,7 @@ public class ProductBasket {
         return true;
     }
 
-    private boolean isBasketEmpty(Product[] products) {
+    private boolean isBasketEmpty(ArrayList<Product> products) {
         for (Product product : products) {
             if (product != null) {
                 return false;

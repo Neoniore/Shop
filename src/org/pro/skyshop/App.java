@@ -12,11 +12,11 @@ import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
-        //ProductBasket pb = getProductBasket();
-        //pb.displayTheContentsOfTheBasket();
+        ProductBasket pb = getProductBasket();
+        pb.displayTheContentsOfTheBasket();
 
         SearchEngine se = null;
-        try {
+        /*try {
             se = getSearchEngineElements();
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException (e);
@@ -31,15 +31,15 @@ public class App {
         } catch (BestResultNotFound e) {
             throw new RuntimeException(e);
         }
+*/
 
-
-        //System.out.println("theCostOfTheBasket = " + pb.obtainingTheCostOfTheBasket());
-        //System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"молоко\") = " + pb.checkingByTheNameOfTheProductInTheBasket("молоко"));
-        //System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"краска\") = " + pb.checkingByTheNameOfTheProductInTheBasket("краска"));
-        //pb.cleaningTheBasket();
-        //pb.displayTheContentsOfTheBasket();
-        //pb.obtainingTheCostOfTheBasket();
-        //pb.checkingByTheNameOfTheProductInTheBasket("молоко");
+        System.out.println("theCostOfTheBasket = " + pb.obtainingTheCostOfTheBasket());
+        System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"молоко\") = " + pb.checkingByTheNameOfTheProductInTheBasket("молоко"));
+        System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"краска\") = " + pb.checkingByTheNameOfTheProductInTheBasket("краска"));
+        pb.cleaningTheBasket();
+        pb.displayTheContentsOfTheBasket();
+        pb.obtainingTheCostOfTheBasket();
+        pb.checkingByTheNameOfTheProductInTheBasket("молоко");
     }
 
     private static SearchEngine getSearchEngineElements() {
@@ -84,9 +84,9 @@ public class App {
         pb.addingGoods(meat);
         pb.addingGoods(chocolate);
         pb.addingGoods(pen);
-        //pb.addingGoods(milk);
-        //pb.addingGoods(cheese);
-        //pb.addingGoods(butter);
+        pb.addingGoods(milk);
+        pb.addingGoods(cheese);
+        pb.addingGoods(butter);
 
         return pb;
     }
