@@ -1,6 +1,7 @@
 package org.pro.skyshop;
 
 import org.pro.skyshop.content.Article;
+import org.pro.skyshop.exception.BestResultNotFound;
 import org.pro.skyshop.product.DiscountedProduct;
 import org.pro.skyshop.product.FixPriceProduct;
 import org.pro.skyshop.product.SimpleProduct;
@@ -24,17 +25,18 @@ public class App {
         System.out.println("pb.deleteGoods(\"Вода\") = " + pb.deleteGoods("Вода"));
         pb.printBasket();
 
+        System.out.println("\n");
 
-//        SearchEngine se = null;
-//        try {
-//            se = getSearchEngineElements();
-//        } catch (IllegalArgumentException e) {
-//            throw new IllegalArgumentException (e);
-//        }
-//
-//        System.out.println(Arrays.toString(se.search("мясо")));
-//
-//
+        SearchEngine se;
+        try {
+            se = getSearchEngineElements();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException (e);
+        }
+
+        System.out.println(se.search("мясо"));
+
+
 //        try {
 //            System.out.println("\nse.findSearchable() = " + se.findSearchable("молоко"));
 //            System.out.println("\nse.findSearchable() = " + se.findSearchable("ffff"));
@@ -44,7 +46,7 @@ public class App {
     }
 
     private static SearchEngine getSearchEngineElements() {
-        SimpleProduct meat = new SimpleProduct("Мясо", 250);
+        SimpleProduct meat = new SimpleProduct("Мясо курицы", 250);
         SimpleProduct milk = new SimpleProduct("Молоко", 100);
         SimpleProduct cheese = new SimpleProduct("Сыр", 150);
         SimpleProduct water = new SimpleProduct("Вода", 80);
@@ -55,7 +57,7 @@ public class App {
         Article milkArticle = new Article("Молоко: польза для здоровья и как избежать подделок", "Как отличить натуральное молоко от подделки и почему оно важно для вашего рациона.");
         Article meatArticle = new Article("Мясо: как выбрать качественный продукт и сохранить его свежесть", "Советы по выбору свежего мяса и правильному хранению для сохранения вкуса и пользы.");
 
-        SearchEngine se = new SearchEngine(9);
+        SearchEngine se = new SearchEngine();
         se.add(meat);
         se.add(milk);
         se.add(cheese);
@@ -65,6 +67,12 @@ public class App {
         se.add(chocolate);
         se.add(milkArticle);
         se.add(meatArticle);
+        se.add(new SimpleProduct("Мясо индейки", 270));
+        se.add(new SimpleProduct("Мясо барана", 270));
+        se.add(new SimpleProduct("Мясо ягненка", 270));
+        se.add(new SimpleProduct("Мясо кролика", 270));
+        se.add(new SimpleProduct("Мясо теленка", 270));
+        se.add(new SimpleProduct("Мясо рыбы", 270));
 
         return se;
     }
