@@ -3,6 +3,7 @@ package org.pro.skyshop.basket;
 import org.pro.skyshop.product.Product;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ProductBasket {
     private ArrayList<Product> products;
@@ -12,12 +13,29 @@ public class ProductBasket {
     }
 
     // добавление товара в корзину
-    public void addingGoods(Product product) {
+    public void addGoods(Product product) {
         products.add(product);
     }
 
+    // удаление товара из корзины
+    public ArrayList<Product> deleteGoods(String productName) {
+        ArrayList<Product> removedProducts = new ArrayList<>();
+        Iterator<Product> iterator = products.iterator();
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (product.getName().equalsIgnoreCase(productName)) {
+                removedProducts.add(product);
+                iterator.remove();
+            }
+        }
+        if (removedProducts.isEmpty()) {
+            System.out.println("Список удаленных продуктов пуст");
+        }
+        return removedProducts;
+    }
+
     // получение стоимости всей корзины
-    public int obtainingTheCostOfTheBasket() {
+    public int costOfTheBasket() {
         if (isBasketEmpty(products)) {
             throw new IllegalStateException("Корзина пуста, невозможно рассчитать сумму");
         }
@@ -29,7 +47,7 @@ public class ProductBasket {
     }
 
     // печать содержимого корзины
-    public void displayTheContentsOfTheBasket() {
+    public void printBasket() {
         if (isBasketEmpty(products)) {
             throw new IllegalStateException("В корзине пусто");
         }
@@ -43,7 +61,7 @@ public class ProductBasket {
                 specialProductsCount++;
             }
         }
-        System.out.printf("----------\nИтого: %d\n", obtainingTheCostOfTheBasket());
+        System.out.printf("----------\nИтого: %d\n", costOfTheBasket());
         System.out.printf("Специальных товаров: %d\n----------\n", specialProductsCount);
     }
 

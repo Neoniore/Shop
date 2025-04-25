@@ -1,45 +1,46 @@
 package org.pro.skyshop;
 
 import org.pro.skyshop.content.Article;
-import org.pro.skyshop.exception.BestResultNotFound;
 import org.pro.skyshop.product.DiscountedProduct;
 import org.pro.skyshop.product.FixPriceProduct;
 import org.pro.skyshop.product.SimpleProduct;
 import org.pro.skyshop.basket.ProductBasket;
 import org.pro.skyshop.search.SearchEngine;
 
-import java.util.Arrays;
-
 public class App {
     public static void main(String[] args) {
         ProductBasket pb = getProductBasket();
-        pb.displayTheContentsOfTheBasket();
+        pb.printBasket();
 
-        SearchEngine se = null;
-        /*try {
-            se = getSearchEngineElements();
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException (e);
-        }
+//        System.out.println("theCostOfTheBasket = " + pb.costOfTheBasket());
+//        System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"молоко\") = " + pb.checkingByTheNameOfTheProductInTheBasket("молоко"));
+//        System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"краска\") = " + pb.checkingByTheNameOfTheProductInTheBasket("краска"));
+//        pb.cleaningTheBasket();
+//        pb.displayTheContentsOfTheBasket();
+//        pb.costOfTheBasket();
+//        pb.checkingByTheNameOfTheProductInTheBasket("молоко");
+        System.out.println("pb.deleteGoods(\"Вода\") = " + pb.deleteGoods("Вода"));
+        pb.printBasket();
+        System.out.println("pb.deleteGoods(\"Вода\") = " + pb.deleteGoods("Вода"));
+        pb.printBasket();
 
-        System.out.println(Arrays.toString(se.search("мясо")));
 
-
-        try {
-            System.out.println("\nse.findSearchable() = " + se.findSearchable("молоко"));
-            System.out.println("\nse.findSearchable() = " + se.findSearchable("ffff"));
-        } catch (BestResultNotFound e) {
-            throw new RuntimeException(e);
-        }
-*/
-
-        System.out.println("theCostOfTheBasket = " + pb.obtainingTheCostOfTheBasket());
-        System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"молоко\") = " + pb.checkingByTheNameOfTheProductInTheBasket("молоко"));
-        System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"краска\") = " + pb.checkingByTheNameOfTheProductInTheBasket("краска"));
-        pb.cleaningTheBasket();
-        pb.displayTheContentsOfTheBasket();
-        pb.obtainingTheCostOfTheBasket();
-        pb.checkingByTheNameOfTheProductInTheBasket("молоко");
+//        SearchEngine se = null;
+//        try {
+//            se = getSearchEngineElements();
+//        } catch (IllegalArgumentException e) {
+//            throw new IllegalArgumentException (e);
+//        }
+//
+//        System.out.println(Arrays.toString(se.search("мясо")));
+//
+//
+//        try {
+//            System.out.println("\nse.findSearchable() = " + se.findSearchable("молоко"));
+//            System.out.println("\nse.findSearchable() = " + se.findSearchable("ffff"));
+//        } catch (BestResultNotFound e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     private static SearchEngine getSearchEngineElements() {
@@ -79,14 +80,15 @@ public class App {
         FixPriceProduct pen = new FixPriceProduct("ручка");
 
         ProductBasket pb = new ProductBasket();
-        pb.addingGoods(water);
-        pb.addingGoods(bread);
-        pb.addingGoods(meat);
-        pb.addingGoods(chocolate);
-        pb.addingGoods(pen);
-        pb.addingGoods(milk);
-        pb.addingGoods(cheese);
-        pb.addingGoods(butter);
+        pb.addGoods(water);
+        pb.addGoods(bread);
+        pb.addGoods(meat);
+        pb.addGoods(chocolate);
+        pb.addGoods(pen);
+        pb.addGoods(milk);
+        pb.addGoods(cheese);
+        pb.addGoods(butter);
+        pb.addGoods(new SimpleProduct("Вода", 100));
 
         return pb;
     }
