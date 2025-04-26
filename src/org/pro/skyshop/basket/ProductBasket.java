@@ -4,9 +4,10 @@ import org.pro.skyshop.product.Product;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class ProductBasket {
-    private ArrayList<Product> products;
+    private List<Product> products;
 
     public ProductBasket() {
         products = new ArrayList<>();
@@ -18,8 +19,8 @@ public class ProductBasket {
     }
 
     // удаление товара из корзины
-    public ArrayList<Product> deleteGoods(String productName) {
-        ArrayList<Product> removedProducts = new ArrayList<>();
+    public List<Product> deleteGoods(String productName) {
+        List<Product> removedProducts = new ArrayList<>();
         Iterator<Product> iterator = products.iterator();
         while (iterator.hasNext()) {
             Product product = iterator.next();
@@ -86,17 +87,7 @@ public class ProductBasket {
         products.clear();
     }
 
-
-    private boolean isBasketFull(Product[] products) {
-        for (Product product : products) {
-            if (product == null) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean isBasketEmpty(ArrayList<Product> products) {
+    private boolean isBasketEmpty(List<Product> products) {
         for (Product product : products) {
             if (product != null) {
                 return false;

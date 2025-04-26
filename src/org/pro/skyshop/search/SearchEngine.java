@@ -3,9 +3,10 @@ package org.pro.skyshop.search;
 import org.pro.skyshop.exception.BestResultNotFound;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchEngine {
-    ArrayList<Searchable> searchables;
+    List<Searchable> searchables;
 
     public SearchEngine() {
         searchables = new ArrayList<>();
