@@ -2,29 +2,41 @@ package org.pro.skyshop.basket;
 
 import org.pro.skyshop.product.Product;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class ProductBasket {
-    private static final int CAPACITY_OF_BASKET = 5;
-    private Product[] products;
+    private List<Product> products;
 
     public ProductBasket() {
-        products = new Product[CAPACITY_OF_BASKET];
+        products = new ArrayList<>();
     }
 
     // добавление товара в корзину
-    public void addingGoods(Product product) {
-        if (isBasketFull(products)) {
-            throw new IllegalStateException("Невозможно добавить продукт");
-        }
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null) {
-                products[i] = product;
-                break;
+    public void addGoods(Product product) {
+        products.add(product);
+    }
+
+    // удаление товара из корзины
+    public List<Product> deleteGoods(String productName) {
+        List<Product> removedProducts = new ArrayList<>();
+        Iterator<Product> iterator = products.iterator();
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (product.getName().equalsIgnoreCase(productName)) {
+                removedProducts.add(product);
+                iterator.remove();
             }
         }
+        if (removedProducts.isEmpty()) {
+            System.out.println("Список удаленных продуктов пуст");
+        }
+        return removedProducts;
     }
 
     // получение стоимости всей корзины
-    public int obtainingTheCostOfTheBasket() {
+    public int costOfTheBasket() {
         if (isBasketEmpty(products)) {
             throw new IllegalStateException("Корзина пуста, невозможно рассчитать сумму");
         }
@@ -36,7 +48,7 @@ public class ProductBasket {
     }
 
     // печать содержимого корзины
-    public void displayTheContentsOfTheBasket() {
+    public void printBasket() {
         if (isBasketEmpty(products)) {
             throw new IllegalStateException("В корзине пусто");
         }
@@ -50,7 +62,7 @@ public class ProductBasket {
                 specialProductsCount++;
             }
         }
-        System.out.printf("----------\nИтого: %d\n", obtainingTheCostOfTheBasket());
+        System.out.printf("----------\nИтого: %d\n", costOfTheBasket());
         System.out.printf("Специальных товаров: %d\n----------\n", specialProductsCount);
     }
 
@@ -72,20 +84,10 @@ public class ProductBasket {
         if (isBasketEmpty(products)) {
             throw new IllegalStateException("Корзина уже пустая");
         }
-        products = new Product[CAPACITY_OF_BASKET];
+        products.clear();
     }
 
-
-    private boolean isBasketFull(Product[] products) {
-        for (Product product : products) {
-            if (product == null) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean isBasketEmpty(Product[] products) {
+    private boolean isBasketEmpty(List<Product> products) {
         for (Product product : products) {
             if (product != null) {
                 return false;

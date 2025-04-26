@@ -8,42 +8,45 @@ import org.pro.skyshop.product.SimpleProduct;
 import org.pro.skyshop.basket.ProductBasket;
 import org.pro.skyshop.search.SearchEngine;
 
-import java.util.Arrays;
-
 public class App {
     public static void main(String[] args) {
-        //ProductBasket pb = getProductBasket();
-        //pb.displayTheContentsOfTheBasket();
+        ProductBasket pb = getProductBasket();
+        pb.printBasket();
 
-        SearchEngine se = null;
+//        System.out.println("theCostOfTheBasket = " + pb.costOfTheBasket());
+//        System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"молоко\") = " + pb.checkingByTheNameOfTheProductInTheBasket("молоко"));
+//        System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"краска\") = " + pb.checkingByTheNameOfTheProductInTheBasket("краска"));
+//        pb.cleaningTheBasket();
+//        pb.displayTheContentsOfTheBasket();
+//        pb.costOfTheBasket();
+//        pb.checkingByTheNameOfTheProductInTheBasket("молоко");
+        System.out.println("pb.deleteGoods(\"Вода\") = " + pb.deleteGoods("Вода"));
+        pb.printBasket();
+        System.out.println("pb.deleteGoods(\"Вода\") = " + pb.deleteGoods("Вода"));
+        pb.printBasket();
+
+        System.out.println("\n");
+
+        SearchEngine se;
         try {
             se = getSearchEngineElements();
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException (e);
         }
 
-        System.out.println(Arrays.toString(se.search("мясо")));
+        System.out.println(se.search("мясо"));
 
 
-        try {
-            System.out.println("\nse.findSearchable() = " + se.findSearchable("молоко"));
-            System.out.println("\nse.findSearchable() = " + se.findSearchable("ffff"));
-        } catch (BestResultNotFound e) {
-            throw new RuntimeException(e);
-        }
-
-
-        //System.out.println("theCostOfTheBasket = " + pb.obtainingTheCostOfTheBasket());
-        //System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"молоко\") = " + pb.checkingByTheNameOfTheProductInTheBasket("молоко"));
-        //System.out.println("pb.checkingByTheNameOfTheProductInTheBasket(\"краска\") = " + pb.checkingByTheNameOfTheProductInTheBasket("краска"));
-        //pb.cleaningTheBasket();
-        //pb.displayTheContentsOfTheBasket();
-        //pb.obtainingTheCostOfTheBasket();
-        //pb.checkingByTheNameOfTheProductInTheBasket("молоко");
+//        try {
+//            System.out.println("\nse.findSearchable() = " + se.findSearchable("молоко"));
+//            System.out.println("\nse.findSearchable() = " + se.findSearchable("ffff"));
+//        } catch (BestResultNotFound e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     private static SearchEngine getSearchEngineElements() {
-        SimpleProduct meat = new SimpleProduct("Мясо", 250);
+        SimpleProduct meat = new SimpleProduct("Мясо курицы", 250);
         SimpleProduct milk = new SimpleProduct("Молоко", 100);
         SimpleProduct cheese = new SimpleProduct("Сыр", 150);
         SimpleProduct water = new SimpleProduct("Вода", 80);
@@ -54,7 +57,7 @@ public class App {
         Article milkArticle = new Article("Молоко: польза для здоровья и как избежать подделок", "Как отличить натуральное молоко от подделки и почему оно важно для вашего рациона.");
         Article meatArticle = new Article("Мясо: как выбрать качественный продукт и сохранить его свежесть", "Советы по выбору свежего мяса и правильному хранению для сохранения вкуса и пользы.");
 
-        SearchEngine se = new SearchEngine(9);
+        SearchEngine se = new SearchEngine();
         se.add(meat);
         se.add(milk);
         se.add(cheese);
@@ -64,6 +67,12 @@ public class App {
         se.add(chocolate);
         se.add(milkArticle);
         se.add(meatArticle);
+        se.add(new SimpleProduct("Мясо индейки", 270));
+        se.add(new SimpleProduct("Мясо барана", 270));
+        se.add(new SimpleProduct("Мясо ягненка", 270));
+        se.add(new SimpleProduct("Мясо кролика", 270));
+        se.add(new SimpleProduct("Мясо теленка", 270));
+        se.add(new SimpleProduct("Мясо рыбы", 270));
 
         return se;
     }
@@ -79,14 +88,15 @@ public class App {
         FixPriceProduct pen = new FixPriceProduct("ручка");
 
         ProductBasket pb = new ProductBasket();
-        pb.addingGoods(water);
-        pb.addingGoods(bread);
-        pb.addingGoods(meat);
-        pb.addingGoods(chocolate);
-        pb.addingGoods(pen);
-        //pb.addingGoods(milk);
-        //pb.addingGoods(cheese);
-        //pb.addingGoods(butter);
+        pb.addGoods(water);
+        pb.addGoods(bread);
+        pb.addGoods(meat);
+        pb.addGoods(chocolate);
+        pb.addGoods(pen);
+        pb.addGoods(milk);
+        pb.addGoods(cheese);
+        pb.addGoods(butter);
+        pb.addGoods(new SimpleProduct("Вода", 100));
 
         return pb;
     }
